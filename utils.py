@@ -2,6 +2,7 @@ from io import BytesIO
 from PIL import Image
 from django.core.files.base import ContentFile
 from django.core.files import File
+from uuid import uuid4
 
 
 def image_compress(image, width):
@@ -55,3 +56,17 @@ class DataMixin:
         ] = article_actions  # Расширяем словарь контекста новым ключом 'article_actions'
 
         return context
+
+
+
+from pytils.translit import slugify
+
+def unique_slugify(instance, slug):
+    """
+    Функция: генерация уникального SLUG для объекта модели
+    """
+    model = instance.__class__  # Получаем модель по объекту
+    unique_slug = slugify(slug)  # Формируем уникальный slug из переданного функции аргумента slug
+    while model.objects.filter(slug=unique_slug).exists():  # Пока наш уникальный slug повторяет другой
+        unique_slug = f'{unique_slug}-{uuid4().hex[:8]}'  # Сформируем новый slug
+    return unique_slug
