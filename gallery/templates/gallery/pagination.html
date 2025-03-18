@@ -1,0 +1,37 @@
+{% if page_obj.has_other_pages %}
+    <nav class="pagination__container">
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&lt;&lt;</a>
+            {% else %}
+                <p>&lt;&lt;</p>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+            {% else %}
+                <p>&lt;</p>
+            {% endif %}
+
+            {% for p in paginator.page_range %}
+                {% if page_obj.number == p %}
+                    <p class="pagination_active">{{ p }}</p>
+                {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                    <a href="?page={{ p }}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+            {% else %}
+                <p>&gt;</p>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ paginator.num_pages }}">&gt;&gt;</a>
+            {% else %}
+                <p>&gt;&gt;</p>
+            {% endif %}
+        </div>
+    </nav>
+{% endif %}

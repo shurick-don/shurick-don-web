@@ -1,0 +1,22 @@
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__block" id="footer__logo" style="border: none;">
+            <p style="font-size: 3em; font-weight: 900;" id="am1">Alexander Maximenko</p>
+            <p style="font-size: 3em; font-weight: 900;" id="am2">AM</p>
+        </div>
+
+        <div class="footer__block" id="footer__navigation">
+            <div class="footer__links">
+                {% for n in nav %}
+                    <a href="{% url n.url_name %}" target="_self">{{ n.title }}</a>
+                {% endfor %}
+            </div>
+
+            <p style="font-size: 0.8em;" id="copyright1">©{% now "Y" %} Alexander Maximenko | All Rights Reserved</p>
+        </div>
+        </div>
+    </div>
+
+    <p style="font-size: 0.8em; text-align: center;" id="copyright2">©{% now "Y" %} Alexander Maximenko | All Rights Reserved</p>
+
+</footer>
