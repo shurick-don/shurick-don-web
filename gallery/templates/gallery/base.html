@@ -18,12 +18,12 @@
 
 <body>
     <div class="body__container">
-        {% comment %} {% include 'gallery/header.html' %} {% endcomment %}
+        {% include 'gallery/header.html' %}
 
         {% block content %}
         {% endblock %}
 
-        {% comment %} {% include 'gallery/footer.html' %} {% endcomment %}
+        {% include 'gallery/footer.html' %}
     </div>
 
     {% block scripts %}
