@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 
 from .models import *
-from .utils import DataMixin
+from utils import DataMixin
 
 
 # DataMixin - миксин с данными для панели навигации

@@ -8,7 +8,7 @@ from django.core.validators import FileExtensionValidator
 from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 
-from .utils import image_compress
+from utils import image_compress
 
 
 class Gallery(models.Model):
