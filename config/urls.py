@@ -19,9 +19,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from main.views import pageNotFound
+
+
+# Обработка исключения 404
+handler404 = pageNotFound
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include('gallery.urls')),
+    path("", include('main.urls')),
+    path("gallery", include('gallery.urls')),
 ]
 
 if settings.DEBUG:               

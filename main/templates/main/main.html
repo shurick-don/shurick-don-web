@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+        <main class="main content--size">
+            <div class="main__container ">
+                <div class="main__title">
+                    <h1>Pythonist, Дизайнер</h1>
+                    <h2>"Аккуратный программист - быстрый программист"</h2>
+                </div>
+                <div class="main__image">
+                    <div class="image__container">
+                        <div class="image__background"></div>
+                        <img src="{% static 'main/images/AM 1.png' %}" alt="Александр Максименко - фото">
+                    </div>
+                </div>
+            </div>
+            ...
+        </main>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'main/js/base.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
+{% endblock %}

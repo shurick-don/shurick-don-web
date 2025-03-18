@@ -29,8 +29,10 @@ def image_compress(image, width):
 
 
 navigation = [
-    {"title": "Фото", "url_name": "gallery"},  # request.path = 'gallery/'
+    {"title": "Обо мне", "url_name":"main"},   # request.path = "" 
+    {"title": "Фото", "url_name": "gallery"},  # request.path = "gallery/"
 ]
+
 
 
 article_actions = []
