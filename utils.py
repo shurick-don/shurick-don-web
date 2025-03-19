@@ -8,9 +8,10 @@ from uuid import uuid4
 navigation = [{'title': 'Обо мне', 'url_name': 'main'},  # request.path = ''
               {'title': 'Фото', 'url_name': 'gallery'},  # request.path = 'gallery/'
               {'title': 'Блог', 'url_name': 'blog'},  # request.path = 'blog/'
+              {'title': 'Добавить пост', 'url_name': 'article_create'}  # request.path = 'blog/articles/create/'
               ]
 
-article_actions = []
+article_actions = [{'title': 'Редактировать статью', 'url_name': 'article_update'}]
 
 class DataMixin:
     """

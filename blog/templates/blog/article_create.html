@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+        <main class="main content--size">
+            <div class="blog">
+                <h1>Добавление стати</h1>
+                <div class="blog__container"> 
+                    <form method="post" action="{% url 'article_create' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div>
+                            <button type="submit" >Добавить статью</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+{% endblock %}

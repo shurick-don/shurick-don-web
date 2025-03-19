@@ -16,6 +16,17 @@
                             <p>{{ article.time_create|date:"d.m.Y" }}</p>
                         </div>
                         </div>
+
+                        {% if request.user.is_authenticated %}
+                    <div>
+                        {% for option in article_actions %}
+                            <a href="{{ request.path }}update/" target="_self">
+                               <button class="btn_edit">{{ option.title }}</button>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
                 </div>
                 
                 <div class="blog__container">

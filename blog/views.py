@@ -1,12 +1,12 @@
-from django.shortcuts import render
-
 from django.db.models import Q
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
 
-from .models import Article
 from utils import DataMixin
-
 from .models import Article, Category
+from .forms import ArticleCreateForm, ArticleUpdateForm
 
 
 # DataMixin - миксин с данными для панели навигации
@@ -115,6 +115,57 @@ class ArticleView(DataMixin, DetailView):
         )  # Получение словаря с контекстом (в т.ч. навигацией из DataMixin)
         c_def = self.get_mixin_context(
             title=f"AM | {self.object.title}"
+        )  # Добавление ключа title в контекст
+        return dict(
+            list(context.items()) + list(c_def.items())
+        )  # Возвращение итогового словаря с контекстом
+
+
+# LoginRequiredMixin - миксин для ограничения доступа неавторизованного пользователя на страницу
+# DataMixin - миксин с данными для панели навигации
+class ArticleCreateView(LoginRequiredMixin, DataMixin, CreateView):
+    """
+    Представление: создание статьи на сайте
+    """
+
+    form_class = ArticleCreateForm  # Указание класса формы
+    template_name = "blog/article_create.html"  # Путь к шаблону html ("blog(название приложения)/article_create.html")
+    success_url = reverse_lazy(
+        "blog"
+    )  # Путь, на который произойдет переадресация при успешной валидации формы
+
+    def get_context_data(self, **kwargs):
+        """
+        Функция получения контекста
+        """
+        context = super().get_context_data(
+            **kwargs
+        )  # Получение словаря с контекстом (в т.ч. навигацией из DataMixin)
+        c_def = self.get_mixin_context(
+            title="AM | Добавление статьи"
+        )  # Добавление ключа title в контекст
+        return dict(
+            list(context.items()) + list(c_def.items())
+        )  # Возвращение итогового словаря с контекстом
+
+
+# LoginRequiredMixin - миксин для ограничения доступа неавторизованного пользователя на страницу
+# DataMixin - миксин с данными для панели навигации
+class ArticleUpdateView(LoginRequiredMixin, DataMixin, UpdateView):
+    """
+    Представление: обновление статьи на сайте
+    """
+
+    model = Article  # Указание модели для UpdateView
+    form_class = ArticleUpdateForm  # Указание класса формы
+    template_name = "blog/article_update.html"  # Путь к шаблону html ("blog(название приложения)/article_update.html")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(
+            **kwargs
+        )  # Получение словаря с контекстом (в т.ч. навигацией из DataMixin)
+        c_def = self.get_mixin_context(
+            title=f"Обновление статьи: {self.object.title}"
         )  # Добавление ключа title в контекст
         return dict(
             list(context.items()) + list(c_def.items())
