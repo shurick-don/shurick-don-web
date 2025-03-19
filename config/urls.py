@@ -27,6 +27,7 @@ handler404 = pageNotFound
 
 
 urlpatterns = [
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
     path("admin/", admin.site.urls),
     path("", include("main.urls")),
     path("gallery/", include("gallery.urls")),

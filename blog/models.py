@@ -10,7 +10,7 @@ from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 from django.db.models.signals import pre_save, pre_delete, post_save
 from django.dispatch import receiver
-
+from django_ckeditor_5.fields import CKEditor5Field
 
 from utils import unique_slugify, image_compress
 
@@ -153,6 +153,8 @@ class Article(models.Model):
         related_name="articles",
         verbose_name="Категория",
     )
+    # Поле полного описания через CKEditor5 (расширенный редактор текста)
+    full_description = CKEditor5Field(verbose_name='Полное описание', config_name='extends')
 
     # Вызов и сохранение объектов модели через кастомный менеджер
     objects = ArticleManager()
