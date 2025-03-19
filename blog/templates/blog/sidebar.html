@@ -1,0 +1,44 @@
+<div class="blog__navigation__container">
+    <div class="blog__navigation">
+        {% if not 'article' in request.path %}
+        <form action="{% url 'blog' %}">
+            <input type="search" id="search" placeholder="Поиск по блогу" name="search">
+        </form>
+        {% endif %}
+        <div class="blog__categories">
+            <p>Категории</p>
+            {% load mptt_tags %}
+            <ul>
+                {% recursetree categories %}
+                    {% if node.is_child_node and node.get_absolute_url == request.path %}
+                        <li>
+                            <div class="category--selected">
+                               <div>{{ node }}</div>
+                               <div>({{ node.articles_count }})</div>
+                            </div>
+                        </li>
+                    {% elif node.is_child_node %}
+                        <li>
+                            <a href="{{ node.get_absolute_url }}" target="_self">
+                                <div class="category">
+                                   <div>{{ node }}</div>
+                                   <div>({{ node.articles_count }})</div>
+                               </div>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <div class="category">
+                               <div>{{ node }}</div>
+                            </div>
+                        </li>
+                    {% endif %}
+
+                    {% if not node.is_leaf_node %}
+                        <ul>{{ children }}</ul>
+                    {% endif %}
+                {% endrecursetree %}
+            </ul>
+        </div>
+    </div>
+</div>

@@ -2,8 +2,9 @@ from io import BytesIO
 from PIL import Image
 from django.core.files.base import ContentFile
 from django.core.files import File
+from pytils.translit import slugify
 from uuid import uuid4
-
+import os
 
 navigation = [{'title': 'Обо мне', 'url_name': 'main'},  # request.path = ''
               {'title': 'Фото', 'url_name': 'gallery'},  # request.path = 'gallery/'
@@ -63,7 +64,6 @@ def image_compress(image, width):
 
 
 
-from pytils.translit import slugify
 
 def unique_slugify(instance, slug):
     """
@@ -76,14 +76,14 @@ def unique_slugify(instance, slug):
     return unique_slug
 
 
-    class CkeditorCustomStorage(FileSystemStorage):
-        """
-        Кастомное расположение для медиа файлов редактора
-        """
-        def _save(self, name, content):
-            folder_name = datetime.now().strftime('%Y/%m/%d')  # Присваиваем имя папки в формате (год > месяц > день)
-            name = os.path.join(folder_name, name)  # Включаем в имя файла расположение в соответсвующих дате папках
-            return super()._save(name, content)
+# class CkeditorCustomStorage(FileSystemStorage):
+#     """
+#     Кастомное расположение для медиа файлов редактора
+#     """
+#     def _save(self, name, content):
+#         folder_name = datetime.now().strftime('%Y/%m/%d')  # Присваиваем имя папки в формате (год > месяц > день)
+#         name = os.path.join(folder_name, name)  # Включаем в имя файла расположение в соответсвующих дате папках
+#         return super()._save(name, content)
 
-        location = os.path.join(settings.MEDIA_ROOT, 'blog/uploads/')  # Абсолютный путь к каталогу, в котором будут храниться файлы
-        base_url = urljoin(settings.MEDIA_URL, 'blog/uploads/')  # URL-адрес, по которому хранятся файлы в этом каталоге
+#     location = os.path.join(settings.MEDIA_ROOT, 'blog/uploads/')  # Абсолютный путь к каталогу, в котором будут храниться файлы
+#     base_url = urljoin(settings.MEDIA_URL, 'blog/uploads/')  # URL-адрес, по которому хранятся файлы в этом каталоге

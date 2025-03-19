@@ -69,6 +69,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                  # Кастомные шаблонные контекст процессоры
+                'blog.context_processors.get_categories',
             ],
         },
     },
@@ -165,7 +167,10 @@ customColorPalette = [
 
 # CKEDITOR_5_FILE_STORAGE = "path_to_storage.CustomStorage" # optional
 
-CKEDITOR_5_FILE_STORAGE = 'mySite.utils.CkeditorCustomStorage'
+CKEDITOR_5_FILE_STORAGE = BASE_DIR / 'utils.CkeditorCustomStorage'
+
+
+CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpeg", "jpg", "png", "gif", "bmp", "webp", "tiff"]
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': ['heading', '|', 'bold', 'italic', 'link',
@@ -182,7 +187,7 @@ CKEDITOR_5_CONFIGS = {
         ],
         'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
         'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
-                    'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
+                    'bulletedList', 'numberedList', 'todoList', 'blockQuote', '|',
                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
                     'insertTable',],
         'image': {
@@ -211,10 +216,22 @@ CKEDITOR_5_CONFIGS = {
         },
         'heading' : {
             'options': [
-                { 'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph' },
-                { 'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1' },
-                { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
-                { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' }
+                { 'model': 'paragraph', 'title': 'Абзац', 'class': 'ck-heading_paragraph' },
+                { 'model': 'heading2', 'view': 'h2', 'title': 'Заголовок 2', 'class': 'ck-heading_heading2' },
+                { 'model': 'heading3', 'view': 'h3', 'title': 'Заголовок 3', 'class': 'ck-heading_heading3' },
+                { 'model': 'headingCode',
+                  'view': {'name': 'div', 'classes': 'code_header'},
+                  'title': 'Заголовок Code', 'class': 'code_header' }
+            ]
+        },
+        'codeBlock': {
+            'languages': [
+                {'language': 'python', 'label': 'Python'},
+                {'language': 'django', 'label': 'Django'},
+                {'language': 'xml', 'label': 'HTML'},
+                {'language': 'javascript', 'label': 'JavaScript'},
+                {'language': 'json', 'label': 'JSON'},
+                {'language': 'sql', 'label': 'SQL'},
             ]
         }
     },

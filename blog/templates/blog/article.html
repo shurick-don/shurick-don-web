@@ -31,8 +31,10 @@
                 
                 <div class="blog__container">
                     <div class="article">
-                        <span>{{ article.full_description }}</span>
+                        <span>{{ article.full_description|safe }}</span>
                     </div>
+                    {% include 'blog/sidebar.html' %}
+
                 </div>
             </div>
         </main>
