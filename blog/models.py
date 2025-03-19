@@ -154,7 +154,9 @@ class Article(models.Model):
         verbose_name="Категория",
     )
     # Поле полного описания через CKEditor5 (расширенный редактор текста)
-    full_description = CKEditor5Field(verbose_name='Полное описание', config_name='extends')
+    full_description = CKEditor5Field(
+        verbose_name="Полное описание", config_name="extends"
+    )
 
     # Вызов и сохранение объектов модели через кастомный менеджер
     objects = ArticleManager()

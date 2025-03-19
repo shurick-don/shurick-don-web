@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "mptt",
     "django_ckeditor_5",
     "django_bootstrap5",
@@ -69,8 +68,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                  # Кастомные шаблонные контекст процессоры
-                'blog.context_processors.get_categories',
+                # Кастомные шаблонные контекст процессоры
+                "blog.context_processors.get_categories",
             ],
         },
     },
@@ -137,110 +136,158 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 customColorPalette = [
-        {
-            'color': 'hsl(4, 90%, 58%)',
-            'label': 'Red'
-        },
-        {
-            'color': 'hsl(340, 82%, 52%)',
-            'label': 'Pink'
-        },
-        {
-            'color': 'hsl(291, 64%, 42%)',
-            'label': 'Purple'
-        },
-        {
-            'color': 'hsl(262, 52%, 47%)',
-            'label': 'Deep Purple'
-        },
-        {
-            'color': 'hsl(231, 48%, 48%)',
-            'label': 'Indigo'
-        },
-        {
-            'color': 'hsl(207, 90%, 54%)',
-            'label': 'Blue'
-        },
-    ]
+    {"color": "hsl(4, 90%, 58%)", "label": "Red"},
+    {"color": "hsl(340, 82%, 52%)", "label": "Pink"},
+    {"color": "hsl(291, 64%, 42%)", "label": "Purple"},
+    {"color": "hsl(262, 52%, 47%)", "label": "Deep Purple"},
+    {"color": "hsl(231, 48%, 48%)", "label": "Indigo"},
+    {"color": "hsl(207, 90%, 54%)", "label": "Blue"},
+]
 
 # CKEDITOR_5_CUSTOM_CSS = 'path_to.css' # optional
 
 # CKEDITOR_5_FILE_STORAGE = "path_to_storage.CustomStorage" # optional
 
-CKEDITOR_5_FILE_STORAGE = BASE_DIR / 'utils.CkeditorCustomStorage'
+CKEDITOR_5_FILE_STORAGE = BASE_DIR / "utils.CkeditorCustomStorage"
 
 
 CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpeg", "jpg", "png", "gif", "bmp", "webp", "tiff"]
 CKEDITOR_5_CONFIGS = {
-    'default': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
-                    'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
-
-    },
-    'extends': {
-        'blockToolbar': [
-            'paragraph', 'heading1', 'heading2', 'heading3',
-            '|',
-            'bulletedList', 'numberedList',
-            '|',
-            'blockQuote',
+    "default": {
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "blockQuote",
+            "imageUpload",
         ],
-        'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
-        'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
-                    'bulletedList', 'numberedList', 'todoList', 'blockQuote', '|',
-                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
-                    'insertTable',],
-        'image': {
-            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
-                        'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side',  '|'],
-            'styles': [
-                'full',
-                'side',
-                'alignLeft',
-                'alignRight',
-                'alignCenter',
-            ]
-
+    },
+    "extends": {
+        "blockToolbar": [
+            "paragraph",
+            "heading1",
+            "heading2",
+            "heading3",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "blockQuote",
+        ],
+        "toolbar": [
+            "heading",
+            "|",
+            "outdent",
+            "indent",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "underline",
+            "strikethrough",
+            "code",
+            "subscript",
+            "superscript",
+            "highlight",
+            "|",
+            "codeBlock",
+            "sourceEditing",
+            "insertImage",
+            "bulletedList",
+            "numberedList",
+            "todoList",
+            "blockQuote",
+            "|",
+            "fontSize",
+            "fontFamily",
+            "fontColor",
+            "fontBackgroundColor",
+            "mediaEmbed",
+            "removeFormat",
+            "insertTable",
+        ],
+        "image": {
+            "toolbar": [
+                "imageTextAlternative",
+                "|",
+                "imageStyle:alignLeft",
+                "imageStyle:alignRight",
+                "imageStyle:alignCenter",
+                "imageStyle:side",
+                "|",
+            ],
+            "styles": [
+                "full",
+                "side",
+                "alignLeft",
+                "alignRight",
+                "alignCenter",
+            ],
         },
-        'table': {
-            'contentToolbar': [ 'tableColumn', 'tableRow', 'mergeTableCells',
-            'tableProperties', 'tableCellProperties' ],
-            'tableProperties': {
-                'borderColors': customColorPalette,
-                'backgroundColors': customColorPalette
+        "table": {
+            "contentToolbar": [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+                "tableProperties",
+                "tableCellProperties",
+            ],
+            "tableProperties": {
+                "borderColors": customColorPalette,
+                "backgroundColors": customColorPalette,
             },
-            'tableCellProperties': {
-                'borderColors': customColorPalette,
-                'backgroundColors': customColorPalette
-            }
+            "tableCellProperties": {
+                "borderColors": customColorPalette,
+                "backgroundColors": customColorPalette,
+            },
         },
-        'heading' : {
-            'options': [
-                { 'model': 'paragraph', 'title': 'Абзац', 'class': 'ck-heading_paragraph' },
-                { 'model': 'heading2', 'view': 'h2', 'title': 'Заголовок 2', 'class': 'ck-heading_heading2' },
-                { 'model': 'heading3', 'view': 'h3', 'title': 'Заголовок 3', 'class': 'ck-heading_heading3' },
-                { 'model': 'headingCode',
-                  'view': {'name': 'div', 'classes': 'code_header'},
-                  'title': 'Заголовок Code', 'class': 'code_header' }
+        "heading": {
+            "options": [
+                {
+                    "model": "paragraph",
+                    "title": "Абзац",
+                    "class": "ck-heading_paragraph",
+                },
+                {
+                    "model": "heading2",
+                    "view": "h2",
+                    "title": "Заголовок 2",
+                    "class": "ck-heading_heading2",
+                },
+                {
+                    "model": "heading3",
+                    "view": "h3",
+                    "title": "Заголовок 3",
+                    "class": "ck-heading_heading3",
+                },
+                {
+                    "model": "headingCode",
+                    "view": {"name": "div", "classes": "code_header"},
+                    "title": "Заголовок Code",
+                    "class": "code_header",
+                },
             ]
         },
-        'codeBlock': {
-            'languages': [
-                {'language': 'python', 'label': 'Python'},
-                {'language': 'django', 'label': 'Django'},
-                {'language': 'xml', 'label': 'HTML'},
-                {'language': 'javascript', 'label': 'JavaScript'},
-                {'language': 'json', 'label': 'JSON'},
-                {'language': 'sql', 'label': 'SQL'},
+        "codeBlock": {
+            "languages": [
+                {"language": "python", "label": "Python"},
+                {"language": "django", "label": "Django"},
+                {"language": "xml", "label": "HTML"},
+                {"language": "javascript", "label": "JavaScript"},
+                {"language": "json", "label": "JSON"},
+                {"language": "sql", "label": "SQL"},
             ]
+        },
+    },
+    "list": {
+        "properties": {
+            "styles": "true",
+            "startIndex": "true",
+            "reversed": "true",
         }
     },
-    'list': {
-        'properties': {
-            'styles': 'true',
-            'startIndex': 'true',
-            'reversed': 'true',
-        }
-    }
-
 }
