@@ -5,6 +5,35 @@ from django.core.files import File
 from uuid import uuid4
 
 
+navigation = [{'title': 'Обо мне', 'url_name': 'main'},  # request.path = ''
+              {'title': 'Фото', 'url_name': 'gallery'},  # request.path = 'gallery/'
+              {'title': 'Блог', 'url_name': 'blog'},  # request.path = 'blog/'
+              ]
+
+article_actions = []
+
+class DataMixin:
+    """
+    Класс миксиана с навигацией и опциями редактирования статьи
+    """
+    def get_mixin_context(self, **kwargs):
+        """
+        Метод получения контекста
+        """
+        context = kwargs  # Получаем исходный контекст
+        user_nav = navigation.copy()  # Копируем навигацию, чтоб внесенные далее изменения не затрагивали исходную
+
+        if not self.request.user.is_authenticated:  # Если пользователь не авторизован
+            user_nav.pop(-1)  # Убрать из меню навигации путь для добавления статьи
+
+        context['nav'] = user_nav  # Расширяем словарь контекста новым ключом 'nav'
+        context['article_actions'] = article_actions  # Расширяем словарь контекста новым ключом 'article_actions'
+
+        return context
+
+
+
+
 def image_compress(image, width):
     """
     Метод для сжатия загруженного фото и конвертации в webp
@@ -29,33 +58,7 @@ def image_compress(image, width):
     return image_compressed
 
 
-navigation = [
-    {"title": "Обо мне", "url_name":"main"},   # request.path = "" 
-    {"title": "Фото", "url_name": "gallery"},  # request.path = "gallery/"
-]
 
-
-
-article_actions = []
-
-
-class DataMixin:
-    """
-    Класс миксиана с навигацией и опциями редактирования статьи
-    """
-
-    def get_mixin_context(self, **kwargs):
-        """
-        Метод получения контекста
-        """
-        context = kwargs  # Получаем исходный контекст
-
-        context["nav"] = navigation  # Расширяем словарь контекста новым ключом 'nav'
-        context[
-            "article_actions"
-        ] = article_actions  # Расширяем словарь контекста новым ключом 'article_actions'
-
-        return context
 
 
 

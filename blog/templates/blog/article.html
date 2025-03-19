@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+        <base target="_blank">
+
+        <main class="main content--size">
+            <div class="blog">
+                <h1>{{ article.title }}</h1>
+
+                <div class="blog__container">
+                    <div class="article__meta">
+                        <div class="article__category">
+                            <a href="{% url 'articles_by_category' article.category.slug %}" target="_self">{{ article.category.title }}</a>
+                        </div>
+                        <div class="article__date">
+                            <p>{{ article.time_create|date:"d.m.Y" }}</p>
+                        </div>
+                        </div>
+                </div>
+                
+                <div class="blog__container">
+                    <div class="article">
+                        <span>{{ article.full_description }}</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+{% endblock %}

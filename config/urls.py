@@ -29,7 +29,8 @@ handler404 = pageNotFound
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("main.urls")),
-    path("gallery", include("gallery.urls")),
+    path("gallery/", include("gallery.urls")),
+    path("blog/", include("blog.urls")),
 ]
 
 if settings.DEBUG:

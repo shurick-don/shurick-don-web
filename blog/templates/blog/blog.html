@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+        <main class="main content--size">
+            <div class="blog">
+                <h1>Блог</h1>
+                <div class="blog__container">
+                    <div class="articles__container">
+
+                        {% for a in articles %}
+                            <div class="article--list">
+                                <div class="article__image">
+                                   <img src="{{ a.thumbnail.url }}" alt="{{ a.title }}">
+                               </div>
+
+                                <div class="article__data">
+                                   <div class="article__context">
+                                       <a href="{{ a.get_absolute_url }}">
+                                           <h2>{{ a.title }}</h2>
+                                       </a>
+                                       <p class="article__annotation">{{ a.short_description|safe }}</p>
+                                   </div>
+
+                                   <div class="article__meta--list">
+                                       <div class="article__category">
+                                           <a href="{% url 'articles_by_category' a.category.slug %}">{{ a.category.title }}</a>
+                                       </div>
+                                       <div class="article__date">
+                                           <p>{{ a.time_create|date:"d.m.Y" }}</p>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% include 'main/pagination.html' %}
+                    </div>
+                </div>
+            </div>
+        </main>
+{% endblock %}
