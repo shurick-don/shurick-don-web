@@ -2,25 +2,21 @@
 
 
 {% block content %}
-
-        <main class="main content--size">
-            <div class="gallery">
-                <h1>Мои фотографии</h1>
-                    <div class="gallery__container">
-                        {% for p in photos %}
-                            {% if p.photo_compressed and p.photo_full and p.title and p.content %}
-                            <div class="gallery__block">
-                                <a href="{{ p.photo_full.url }}" target="_blank">
-                                    <img src="{{ p.photo_compressed.url }}" alt="">
-                                    <h2>{{ p.title }}</h2>
-                                    <h3>{{ p.content }}</h3>
-                                </a>
-                            </div>
-                            {% endif %}
-                        {% endfor %}
+                   
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for p in photos %} 
+        <div class="col">
+                <div class="card">
+                    {% if p.photo_compressed and p.photo_full and p.title and p.content %}
+                    <div class="gallery__block">
+                        <a href="{{ p.photo_full.url }}" target="_blank">
+                        <img src="{{ p.photo_compressed.url }}" class="card-img-top" alt="">
+                        </a>
                     </div>
-            </div>
-
-            {% include 'main/pagination.html' %}
-        </main>
+                    {% endif %}
+                </div>
+        </div>
+        {% endfor %}
+    </div>  
+  {% include 'main/pagination.html' %}
 {% endblock %}

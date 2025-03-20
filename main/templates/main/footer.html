@@ -1,3 +1,30 @@
+<div class="container">
+
+    {% comment %} <div class="footer__block" id="footer__logo" style="border: none;">
+        <p style="font-size: 3em; font-weight: 900;" id="am1">Александр Донцов</p>
+        <p style="font-size: 3em; font-weight: 900;" id="am2">Shurick</p>
+    </div> {% endcomment %}
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">&copy; 2025 Company, Inc</p>
+  
+      <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      </a>
+  
+      <ul class="nav col-md-4 justify-content-end">
+        {% for n in nav %}
+            {% url n.url_name as my_url %}
+                <a class="nav-link {% if my_url == request.path or 'blog' in request.path and '/blog/' == my_url %}btn--active{% endif %}" href="{{ my_url }}" target="_self">{{ n.title }}</a>
+            {% endfor %}
+      </ul>
+    </footer>
+  </div>
+
+
+
+
+<!--
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__block" id="footer__logo" style="border: none;">
@@ -20,3 +47,4 @@
     <p style="font-size: 0.8em; text-align: center;" id="copyright2">©{% now "Y" %} Alexander Maximenko | All Rights Reserved</p>
 
 </footer>
+-->
