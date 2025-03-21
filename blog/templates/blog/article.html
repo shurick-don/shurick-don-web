@@ -1,41 +1,21 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-3">
-      {% include 'blog/sidebar.html' %}  
+<div class="card mb-3">
+    <h5 class="card-title">{{ article.title }}</h5>
+    <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">{{ article.full_description|safe }}</p>
+      <p class="card-text"><small class="text-body-secondary">Последнее обновление: {{ article.time_create|date:"d.m.Y" }}</small></p>
     </div>
-    <div class="col-md-9">
-        <base target="_blank">
-        <main class="main content--size">
-            <div class="blog">
-                <h1>{{ article.title }}</h1>
-                <div class="blog__container">
-                    <div class="article__meta">
-                        <div class="article__category">
-                            <a href="{% url 'articles_by_category' article.category.slug %}" target="_self">{{ article.category.title }}</a>
-                        </div>
-                        <div class="article__date">
-                            <p>{{ article.time_create|date:"d.m.Y" }}</p>
-                        </div>
-                        </div>
-                        {% if request.user.is_authenticated %}
-                    <div>
-                        {% for option in article_actions %}
-                            <a href="{{ request.path }}update/" target="_self">
-                               <button class="btn_edit">{{ option.title }}</button>
-                            </a>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </div>
-                <div class="blog__container">
-                    <div class="article">
-                        <span>{{ article.full_description|safe }}</span>
-                    </div>
-                </div>
-            </div>
-        </main>
+    {% if request.user.is_authenticated %}
+    <div>
+        {% for option in article_actions %}
+            <a href="{{ request.path }}update/" target="_self">
+               <button class="btn_edit">{{ option.title }}</button>
+            </a>
+        {% endfor %}
     </div>
-</div>
+    {% endif %}
+  </div>
 {% endblock %}

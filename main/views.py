@@ -15,7 +15,7 @@ class MainView(DataMixin, View):
         Метод, выполняющийся при GET запросе
         """
         context = self.get_mixin_context(
-            title="Александр Максименко"
+            title="Александр Донцов"
         )  # Добавление ключа title в контекст
         return render(
             request, "main/main.html", context=context
