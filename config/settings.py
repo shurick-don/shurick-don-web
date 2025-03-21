@@ -148,7 +148,7 @@ customColorPalette = [
 
 # CKEDITOR_5_FILE_STORAGE = "path_to_storage.CustomStorage" # optional
 
-CKEDITOR_5_FILE_STORAGE = BASE_DIR / "utils.CkeditorCustomStorage"
+CKEDITOR_5_FILE_STORAGE = "utils.CkeditorCustomStorage"
 
 
 CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpeg", "jpg", "png", "gif", "bmp", "webp", "tiff"]

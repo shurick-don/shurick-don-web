@@ -1,12 +1,15 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<div class="row">
+    <div class="col-md-3">
+      {% include 'blog/sidebar.html' %}  
+    </div>
+    <div class="col-md-9">
         <base target="_blank">
-
         <main class="main content--size">
             <div class="blog">
                 <h1>{{ article.title }}</h1>
-
                 <div class="blog__container">
                     <div class="article__meta">
                         <div class="article__category">
@@ -16,7 +19,6 @@
                             <p>{{ article.time_create|date:"d.m.Y" }}</p>
                         </div>
                         </div>
-
                         {% if request.user.is_authenticated %}
                     <div>
                         {% for option in article_actions %}
@@ -26,16 +28,14 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    
                 </div>
-                
                 <div class="blog__container">
                     <div class="article">
                         <span>{{ article.full_description|safe }}</span>
                     </div>
-                    {% include 'blog/sidebar.html' %}
-
                 </div>
             </div>
         </main>
+    </div>
+</div>
 {% endblock %}

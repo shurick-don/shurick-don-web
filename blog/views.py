@@ -9,6 +9,11 @@ from .models import Article, Category
 from .forms import ArticleCreateForm, ArticleUpdateForm
 
 
+def gallery_post(request):
+    posts = Article.objects.all()
+    return render(request, "blog/gallery_post.html", {"posts": posts})
+
+
 # DataMixin - миксин с данными для панели навигации
 class ArticlesView(DataMixin, ListView):
     """

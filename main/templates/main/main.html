@@ -1,36 +1,14 @@
 {% extends 'main/base.html' %}
-
-
 {% load static %}
 
-
 {% block content %}
-<!--
-        <main class="main content--size">
-            <div class="main__container ">
-                <div class="main__title">
-                    <h1>Pythonist, Дизайнер</h1>
-                    <h2>"Аккуратный программист - быстрый программист"</h2>
-                </div>
-                <div class="main__image">
-                    <div class="image__container">
-                        <div class="image__background"></div>
-                        <img src="{% static 'main/images/AM 1.png' %}" alt="Александр Максименко - фото">
-                    </div>
-                </div>
-            </div>
-            ...
-        </main>
--->
         <div class="mt-4 p-5 bg-primary text-white rounded">
             <h1>Порфолио пенсионера</h1>
             <p>Сборник лучших работ специалиста, демонстрирующий его профессионализм,
               таланты и возможности.</p>
               {% comment %} <img src="{% static 'main/images/ya.jpg' %}" class="rounded-circle" alt="..."> {% endcomment %}
           </div>
-
 {% endblock %}
-
 
 {% block scripts %}
     <script src="{% static 'main/js/base.js' %}"></script>

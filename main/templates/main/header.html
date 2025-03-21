@@ -10,37 +10,7 @@
             {% url n.url_name as my_url %}
                 <a class="nav-link {% if my_url == request.path or 'blog' in request.path and '/blog/' == my_url %}btn--active{% endif %}" href="{{ my_url }}" target="_self">{{ n.title }}</a>
             {% endfor %}
-        
         </div>
       </div>
     </div>
   </nav>
-
-<!--
-<header class="header content--size">
-
-    <div class="header__container">
-        <div class="logo">
-            <div class="logo__square">
-                <a href="{% url nav.0.url_name %}">
-                    <span>AM</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="navigation">
-
-            {% for n in nav %}
-                {% url n.url_name as my_url %}
-                    <a class="navigation__button {% if my_url == request.path or 'blog' in request.path and '/blog/' == my_url %}btn--active{% endif %}" href="{{ my_url }}" target="_self">{{ n.title }}</a>
-            {% endfor %}
-
-        </div>
-
-        <div class="navigation__burger">
-            <span></span>
-        </div>
-    </div>
-
-</header>
--->

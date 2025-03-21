@@ -4,6 +4,7 @@ from .views import *
 
 urlpatterns = [
     path("", ArticlesView.as_view(), name="blog"),
+    path("gallery/", gallery_post),
     path("articles/create/", ArticleCreateView.as_view(), name="article_create"),
     path(
         "category/<str:slug>/",

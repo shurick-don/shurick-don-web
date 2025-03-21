@@ -1,9 +1,6 @@
 {% load static %}
-
 <!DOCTYPE html>
-
 <html lang="ru">
-
 
 <head>
     <meta charset="UTF-8">
@@ -12,32 +9,27 @@
     <title>{{ title }}</title>
     <link rel="icon" href="{% static 'main/images/favicon.ico' %}" type="image/x-icon">    
     <link type="text/css" rel="stylesheet" href="{% static 'main/styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'gallery/css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'gallery/css/theme.css' %}">
     <script src="{% static 'main/styles/highlight/highlight.js' %}"></script>
 
     {% load django_bootstrap5 %}
     {% bootstrap_css %}     
     {% bootstrap_javascript %}
-
     {% bootstrap_messages %}
 
 </head>
-
-
 <body>
     <div class="container">
         {% include 'main/header.html' %}
-
         {% block content %}
         {% endblock %}
-
         {% include 'main/footer.html' %}
     </div>
-
     {% block scripts %}
     <script src{% static 'main/js/base.js' %}"></script>
     {% endblock %}
-
+    <script src="{% static 'gallery/js/app.js' %}"></script>
+    <script src="{% static 'gallery/js/theme.js' %}"></script>
 </body>
-
-
 </html>
