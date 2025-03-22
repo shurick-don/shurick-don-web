@@ -29,3 +29,8 @@ class GalleryView(DataMixin, ListView):
         return dict(
             list(context.items()) + list(c_def.items())
         )  # Возвращение итогового словаря с контекстом
+
+
+def get_category(request, pk):
+    photos = Gallery.objects.filter(category__pk=pk)
+    return render(request, "gallery/gallery_post.html", {"photos": photos})

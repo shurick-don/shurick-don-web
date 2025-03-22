@@ -1,7 +1,12 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Gallery
+from .models import Gallery, Category
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("title",)}
 
 
 @admin.register(Gallery)
@@ -11,13 +16,14 @@ class GalleryAdmin(admin.ModelAdmin):
     """
 
     # Отображаемые в админ-панели поля модели
-    list_display = ("id", "get_html_photo_full", "title", "content")
+    list_display = ("id", "get_html_photo_full", "title", "content", "category")
     # Поля, которые имеют ссылку на объект модели (по клику на соответсвующее поле -> переход к редактированию)
     list_display_links = ("id", "get_html_photo_full", "title", "content")
+    list_editable = ("category",)
     # Поля, для которых осуществляется поиск
     search_fields = ("title", "content")
     # Поля, которые отображаются в редакторе объекта модели (важно для подгрузки методов отображения эскиза фото)
-    fields = ("get_html_photo_full", "title", "content", "photo_full")
+    fields = ("get_html_photo_full", "title", "content", "photo_full", "category")
     # Поля только для чтения
     readonly_fields = ("get_html_photo_full",)
 

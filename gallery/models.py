@@ -4,11 +4,28 @@ from PIL import Image
 from django.core.files.base import ContentFile
 from django.core.files import File
 from django.db import models
+from django.urls import reverse
 from django.core.validators import FileExtensionValidator
 from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 
 from utils import image_compress
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, verbose_name="Url", unique=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("gallery:category", kwargs={"pk": self.pk})
+
+    class Meta:
+        verbose_name = "Категория(ю)"
+        verbose_name_plural = "Категории"
+        ordering = ["title"]
 
 
 class Gallery(models.Model):
@@ -38,6 +55,10 @@ class Gallery(models.Model):
         ],  # Валидация допустимых форматов
     )
 
+    category = models.ForeignKey(
+        Category, on_delete=models.PROTECT, null=True, blank=True
+    )
+
     class Meta:
         """
         Метамодель: сортировка, названия полей в админ-панели
@@ -48,6 +69,9 @@ class Gallery(models.Model):
         verbose_name_plural = (
             "Фотографии"  # Имя во множественном числе (для админ-панели)
         )
+
+    def get_absolute_url(self):
+        return reverse("gallery:gallery", kwargs={"pk": self.pk})
 
     def __str__(self):
         """
